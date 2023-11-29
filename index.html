@@ -1,54 +1,111 @@
 <!DOCTYPE html>
-<html>
-<head> 
-     <title> Proyecto 1 </title>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Bases Numéricas</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        main {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select, button {
+            height: 30px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #2ecc71;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .result {
+            background-color: #ecf0f1;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #34495e;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
-<body bgcolor="#FFD0D0">
-     <div class="mod-indent-outer w-100" id="yui_3_17_2_1_1696139426170_29">
-         <div class="mod-indent"></div>
-         <div id="yui_3_17_2_1_1696139426170_28">
-             <div class="contentwithoutlink " id="yui_3_17_2_1_1696139426170_27">
-                 <div class="no-overflow" id="yui_3_17_2_1_1696139426170_26">
-                     <div class="no-overflow" id="yui_3_17_2_1_1696139426170_25">
-                         <div style="background-color: #A20909; padding: 4px;" id="yui_3_17_2_1_1696139426170_24">
-                             <h2 style="color: #fff !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;" id="yui_3_17_2_1_1696139426170_40">Bienvenidos a la calculadora de bases numéricas</h2>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
-    
-    <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">Ingresa un numero decimal (base 10):</h2>
-    <input type="number" style="height: 80px;" size="60" id="decimal" placeholder="Ingrese un número decimal">
-    
-    <!-- Dropdown menu for base selection -->
-    <label for="baseSelector">Selecciona la base:</label>
-    <select id="baseSelector">
-        <option value="binario">Binario (base 2)</option>
-        <option value="hexadecimal">Hexadecimal (base 16)</option>
-        <option value="octal">Octal (base 8)</option>
-    </select>
+<body>
+    <header>
+        <h1>Calculadora de Bases Numéricas</h1>
+    </header>
 
-    <button size="50" onclick="convertirDecimal()">Convertir</button>
+    <main>
+        <h2>Ingresa un número decimal (base 10):</h2>
+        <input type="number" id="decimal" placeholder="Ingrese un número decimal">
 
-   <!-- Cambia la estructura de los contenedores de resultados para facilitar la manipulación -->
-<div id="resultContainer">
-    <div id="resultadoBinarioContainer">
-        <!-- Elimina el contenido actual y ajusta el estilo según sea necesario -->
-    </div>
-    
-    <div id="resultadoHexadecimalContainer">
-        <!-- Elimina el contenido actual y ajusta el estilo según sea necesario -->
-    </div>
-    
-    <div id="resultadoOctalContainer">
-        <!-- Elimina el contenido actual y ajusta el estilo según sea necesario -->
-    </div>
-</div>
-<!-- Añade un botón para reiniciar la acción -->
-<button onclick="reiniciarCalculadora()">Reiniciar</button>
+        <label for="baseSelector">Selecciona la base:</label>
+        <select id="baseSelector">
+            <option value="binario">Binario (base 2)</option>
+            <option value="hexadecimal">Hexadecimal (base 16)</option>
+            <option value="octal">Octal (base 8)</option>
+        </select>
 
+        <button onclick="convertirDecimal()">Convertir</button>
+
+        <div class="result-container">
+            <div class="result" id="resultadoBinarioContainer"></div>
+            <div class="result" id="resultadoHexadecimalContainer"></div>
+            <div class="result" id="resultadoOctalContainer"></div>
+        </div>
+
+        <button onclick="reiniciarCalculadora()">Reiniciar</button>
+    </main>
+
+    <footer>
+        © Todos los derechos reservados.
+    </footer>
 <script>
     function reiniciarCalculadora() {
         // Limpia el valor del campo decimal
