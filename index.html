@@ -65,7 +65,7 @@
         // Oculta los contenedores de resultados
         document.getElementById("resultContainer").style.display = "none";
     }
-
+     
      function convertirDecimal() {
         var decimalInput = document.getElementById("decimal").value;
         var baseSelector = document.getElementById("baseSelector");
@@ -78,7 +78,7 @@
         // Obtén el valor de la base seleccionada
         var selectedBase = baseSelector.value;
 
-        if (!isNaN(decimalInput)) {
+       if (!isNaN(decimalInput)) {
             var resultado = 0;
 
             // Realiza la conversión según la base seleccionada
@@ -101,13 +101,18 @@
                 default:
                     break;
             }
+
+            // Muestra los contenedores de resultados
+            document.getElementById("resultContainer").style.display = "block";
         } else {
             // Mostrar un mensaje de error si la entrada no es un número válido
             alert("Ingrese un número válido.");
-            // Limpia todos los contenedores de resultados en caso de error
-            resultadoBinarioContainer.innerHTML = "";
-            resultadoHexadecimalContainer.innerHTML = "";
-            resultadoOctalContainer.innerHTML = "";
+
+            // Limpia todos los contenedores de resultados y oculta el contenedor
+            document.getElementById("resultContainer").style.display = "none";
+            document.getElementById("resultadoBinarioContainer").innerHTML = "";
+            document.getElementById("resultadoHexadecimalContainer").innerHTML = "";
+            document.getElementById("resultadoOctalContainer").innerHTML = "";
         }
     }
 </script>
