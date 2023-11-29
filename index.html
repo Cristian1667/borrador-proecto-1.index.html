@@ -580,7 +580,7 @@
                 "7C1", // Respuesta pregunta 2
                 "11111100111", // Respuesta pregunta 3
                 "2", // Respuesta pregunta 4
-                "Gottfried Wilhelm Leibniz", // Respuesta pregunta 5
+                "42", // Respuesta pregunta 5
                 "16", // Respuesta pregunta 6     
                 "1", // Respuesta pregunta 7  
                 "4", // Respuesta pregunta 8  
@@ -594,7 +594,7 @@
             var puntaje = 0;
 
             // Verificación de respuestas
-            for (var i = 1; i <= 5; i++) {
+            for (var i = 1; i <= 10; i++) {
                 var radios = document.getElementsByName("question" + i);
                 for (var j = 0; j < radios.length; j++) {
                     if (radios[j].checked) {
@@ -607,7 +607,7 @@
             }
 
             // Mostrar resultados
-            resultadoHTML += "<p>Puntaje: " + puntaje + "/5</p><h3>Respuestas:</h3>";
+            resultadoHTML += "<p>Puntaje: " + puntaje + "/10</p><h3>Respuestas:</h3>";
 
             for (var k = 0; k < respuestasElegidas.length; k++) {
                 if (respuestasElegidas[k] === respuestas[k]) {
