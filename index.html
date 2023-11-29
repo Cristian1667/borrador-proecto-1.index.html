@@ -19,10 +19,10 @@
          </div>
      </div>
     
-     <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">Ingresa un numero decimal (base 10):</h2>
+    <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">Ingresa un numero decimal (base 10):</h2>
     <input type="number" style="height: 80px;" size="60" id="decimal" placeholder="Ingrese un número decimal">
     
- <!--Menu desplegable-->
+    <!-- Dropdown menu for base selection -->
     <label for="baseSelector">Selecciona la base:</label>
     <select id="baseSelector">
         <option value="binario">Binario (base 2)</option>
@@ -32,7 +32,7 @@
 
     <button size="50" onclick="convertirDecimal()">Convertir</button>
 
-    <!-- Resultado -->
+    <!-- Result input fields for binary, hexadecimal, and octal -->
     <div id="resultContainer">
         <div id="resultadoBinarioContainer">
             <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">El numero en binario es (base 2):</h2>
@@ -56,13 +56,13 @@
             var baseSelector = document.getElementById("baseSelector");
             var resultContainer = document.getElementById("resultContainer");
 
-            // Obtenga la base seleccionada en el menu
+            // Get the selected base from the dropdown menu
             var selectedBase = baseSelector.value;
 
             if (!isNaN(decimalInput)) {
                 var resultado = 0;
 
-                // Realizar la conversion segun la base seleccionada
+                // Perform conversion based on the selected base
                 switch (selectedBase) {
                     case "binario":
                         resultado = (decimalInput >>> 0).toString(2);
@@ -80,17 +80,17 @@
                         break;
                 }
 
-                // Ocultar otros contenedores de resultados
+                // Hide other result containers
                 hideResultContainers(selectedBase);
 
             } else {
-                // Mostrar mensaje de error si el numero introducido no es valido
+                // Display an error message if the input is not a valid number
                 resetResultContainers();
                 alert("Ingrese un número válido.");
             }
         }
 
-        // Funcion auxiliar para ocultar contenedores 
+        // Helper function to hide result containers based on the selected base
         function hideResultContainers(selectedBase) {
             var resultContainers = ["resultadoBinarioContainer", "resultadoHexadecimalContainer", "resultadoOctalContainer"];
 
@@ -100,7 +100,7 @@
             }
         }
 
-        //Funcion auxiliar para ocultar contenedores de resultados
+        // Helper function to reset result containers
         function resetResultContainers() {
             var resultContainers = ["resultadoBinario", "resultadoHexadecimal", "resultadoOctal"];
 
@@ -110,6 +110,7 @@
             }
         }
     </script>
+
     <div class="mod-indent-outer w-100" id="yui_3_17_2_1_1696139426170_29"><div class="mod-indent"></div><div id="yui_3_17_2_1_1696139426170_28"><div class="contentwithoutlink " id="yui_3_17_2_1_1696139426170_27"><div class="no-overflow" id="yui_3_17_2_1_1696139426170_26"><div class="no-overflow" id="yui_3_17_2_1_1696139426170_25"><div style="background-color: #A20909; padding: 4px;" id="yui_3_17_2_1_1696139426170_24">
 <h2 style="color: #fff !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;" id="yui_3_17_2_1_1696139426170_40">¿Qué son los numero binarios?&nbsp;</h2>
 </div></div></div></div></div></div>
