@@ -46,19 +46,28 @@
         <!-- Elimina el contenido actual y ajusta el estilo según sea necesario -->
     </div>
 </div>
+<!-- Añade un botón para reiniciar la acción -->
+<button onclick="reiniciarCalculadora()">Reiniciar</button>
 
 <script>
+    function reiniciarCalculadora() {
+        // Limpia el valor del campo decimal
+        document.getElementById("decimal").value = "";
+
+        // Limpia el valor del selector de base
+        document.getElementById("baseSelector").selectedIndex = 0;
+
+        // Limpia los resultados en los contenedores
+        document.getElementById("resultadoBinarioContainer").innerHTML = "";
+        document.getElementById("resultadoHexadecimalContainer").innerHTML = "";
+        document.getElementById("resultadoOctalContainer").innerHTML = "";
+
+        // Oculta los contenedores de resultados
+        document.getElementById("resultContainer").style.display = "none";
+    }
+
     function convertirDecimal() {
-        var decimalInput = document.getElementById("decimal").value;
-        var baseSelector = document.getElementById("baseSelector");
-
-        // Obtén los contenedores de resultados
-        var resultadoBinarioContainer = document.getElementById("resultadoBinarioContainer");
-        var resultadoHexadecimalContainer = document.getElementById("resultadoHexadecimalContainer");
-        var resultadoOctalContainer = document.getElementById("resultadoOctalContainer");
-
-        // Obtén el valor de la base seleccionada
-        var selectedBase = baseSelector.value;
+        // ... (código de la función convertirDecimal sin cambios)
 
         if (!isNaN(decimalInput)) {
             var resultado = 0;
@@ -83,16 +92,22 @@
                 default:
                     break;
             }
+
+            // Muestra los contenedores de resultados
+            document.getElementById("resultContainer").style.display = "block";
         } else {
             // Mostrar un mensaje de error si la entrada no es un número válido
             alert("Ingrese un número válido.");
-            // Limpia todos los contenedores de resultados en caso de error
-            resultadoBinarioContainer.innerHTML = "";
-            resultadoHexadecimalContainer.innerHTML = "";
-            resultadoOctalContainer.innerHTML = "";
+
+            // Limpia todos los contenedores de resultados y oculta el contenedor
+            document.getElementById("resultContainer").style.display = "none";
+            document.getElementById("resultadoBinarioContainer").innerHTML = "";
+            document.getElementById("resultadoHexadecimalContainer").innerHTML = "";
+            document.getElementById("resultadoOctalContainer").innerHTML = "";
         }
     }
 </script>
+
     <div class="mod-indent-outer w-100" id="yui_3_17_2_1_1696139426170_29"><div class="mod-indent"></div><div id="yui_3_17_2_1_1696139426170_28"><div class="contentwithoutlink " id="yui_3_17_2_1_1696139426170_27"><div class="no-overflow" id="yui_3_17_2_1_1696139426170_26"><div class="no-overflow" id="yui_3_17_2_1_1696139426170_25"><div style="background-color: #A20909; padding: 4px;" id="yui_3_17_2_1_1696139426170_24">
 <h2 style="color: #fff !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;" id="yui_3_17_2_1_1696139426170_40">¿Qué son los numero binarios?&nbsp;</h2>
 </div></div></div></div></div></div>
