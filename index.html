@@ -20,39 +20,93 @@
      </div>
     
      <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">Ingresa un numero decimal (base 10):</h2>
-     <input type="number" style="height: 80px;" size="60" id="decimal" placeholder="Ingrese un número decimal">
-  
-     <button size="50" onclick="convertirDecimal()">Convertir</button>
+    <input type="number" style="height: 80px;" size="60" id="decimal" placeholder="Ingrese un número decimal">
+    
+ <!--Menu desplegable-->
+    <label for="baseSelector">Selecciona la base:</label>
+    <select id="baseSelector">
+        <option value="binario">Binario (base 2)</option>
+        <option value="hexadecimal">Hexadecimal (base 16)</option>
+        <option value="octal">Octal (base 8)</option>
+    </select>
 
-     <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">El numero en binario es (base 2):</h2>
-     <input type="text" style="height: 80px;" size="60" id="resultadoBinario" placeholder="El resultado en binario" readonly>
+    <button size="50" onclick="convertirDecimal()">Convertir</button>
 
-     <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">El numero en hexadecimal es (base 16):</h2>
-     <input type="text" style="height: 80px;" size="60" id="resultadoHexadecimal" placeholder="El resultado en hexadecimal" readonly>
+    <!-- Resultado -->
+    <div id="resultContainer">
+        <div id="resultadoBinarioContainer">
+            <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">El numero en binario es (base 2):</h2>
+            <input type="text" style="height: 80px;" size="60" id="resultadoBinario" placeholder="El resultado en binario" readonly>
+        </div>
+        
+        <div id="resultadoHexadecimalContainer">
+            <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">El numero en hexadecimal es (base 16):</h2>
+            <input type="text" style="height: 80px;" size="60" id="resultadoHexadecimal" placeholder="El resultado en hexadecimal" readonly>
+        </div>
+        
+        <div id="resultadoOctalContainer">
+            <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">El numero en octal es (base 8):</h2>
+            <input type="text" style="height: 80px;" size="60" id="resultadoOctal" placeholder="El resultado en octal" readonly>
+        </div>
+    </div>
 
-     <h2 style="color: #000000 !important; font-size: 1.9em; margin-left: 50px; text-shadow: 2px 2px gray;">El numero en octal es (base 8):</h2>
-     <input type="text" style="height: 80px;" size="60" id="resultadoOctal" placeholder="El resultado en octal" readonly>
-  
-     <script>
+    <script>
         function convertirDecimal() {
             var decimalInput = document.getElementById("decimal").value;
-            var resultadoBinario = document.getElementById("resultadoBinario");
-            var resultadoHexadecimal = document.getElementById("resultadoHexadecimal");
-            var resultadoOctal = document.getElementById("resultadoOctal");
+            var baseSelector = document.getElementById("baseSelector");
+            var resultContainer = document.getElementById("resultContainer");
+
+            // Obtenga la base seleccionada en el menu
+            var selectedBase = baseSelector.value;
 
             if (!isNaN(decimalInput)) {
-                var binario = (decimalInput >>> 0).toString(2);
-                resultadoBinario.value = binario;
+                var resultado = 0;
 
-                var hexadecimal = (decimalInput >>> 0).toString(16);
-                resultadoHexadecimal.value = hexadecimal.toUpperCase();
+                // Realizar la conversion segun la base seleccionada
+                switch (selectedBase) {
+                    case "binario":
+                        resultado = (decimalInput >>> 0).toString(2);
+                        document.getElementById("resultadoBinario").value = resultado;
+                        break;
+                    case "hexadecimal":
+                        resultado = (decimalInput >>> 0).toString(16).toUpperCase();
+                        document.getElementById("resultadoHexadecimal").value = resultado;
+                        break;
+                    case "octal":
+                        resultado = (decimalInput >>> 0).toString(8);
+                        document.getElementById("resultadoOctal").value = resultado;
+                        break;
+                    default:
+                        break;
+                }
 
-                var octal = (decimalInput >>> 0).toString(8);
-                resultadoOctal.value = octal;
+                // Ocultar otros contenedores de resultados
+                hideResultContainers(selectedBase);
+
             } else {
-                resultadoBinario.value = "Ingrese un número válido.";
-                resultadoHexadecimal.value = "";
-                resultadoOctal.value = "";
+                // Mostrar mensaje de error si el numero introducido no es valido
+                resetResultContainers();
+                alert("Ingrese un número válido.");
+            }
+        }
+
+        // Funcion auxiliar para ocultar contenedores 
+        function hideResultContainers(selectedBase) {
+            var resultContainers = ["resultadoBinarioContainer", "resultadoHexadecimalContainer", "resultadoOctalContainer"];
+
+            for (var i = 0; i < resultContainers.length; i++) {
+                var container = document.getElementById(resultContainers[i]);
+                container.style.display = resultContainers[i].includes(selectedBase) ? "block" : "none";
+            }
+        }
+
+        //Funcion auxiliar para ocultar contenedores de resultados
+        function resetResultContainers() {
+            var resultContainers = ["resultadoBinario", "resultadoHexadecimal", "resultadoOctal"];
+
+            for (var i = 0; i < resultContainers.length; i++) {
+                var container = document.getElementById(resultContainers[i]);
+                container.value = "";
             }
         }
     </script>
